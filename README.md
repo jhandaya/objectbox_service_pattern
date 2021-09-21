@@ -6,7 +6,12 @@
 
 This Example show you how to implement Service Pattern and Objectbox Database
 
+I pick sample from Objectbox Sync and add some improvement.
+
 It may has a drawback, but your comment and contribution is appreciated.
+
+
+Thank you
 
 
 
