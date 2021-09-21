@@ -1,10 +1,14 @@
-# objectbox_stream_issue
+# objectbox_service_pattern
 
-A new Flutter project.
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This Example show you how to implement Service Pattern and Objectbox Database
+
+It may has a drawback, but your comment and contribution is appreciated.
+
+
 
 A few resources to get you started if this is your first Flutter project:
 
