@@ -26,3 +26,6 @@ class NoteRepo {
 
   void removeNote(Note note) => _box.remove(note.id);
 }
+
+
+///
