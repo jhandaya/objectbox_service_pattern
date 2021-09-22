@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:objectbox_stream_issue/locator.dart';
 import 'package:objectbox_stream_issue/service/objectbox_service.dart';
-import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart';
 
 import 'model/note.dart';
 
@@ -22,21 +21,18 @@ class _DisplayViewState extends State<DisplayView> {
   final _noteInputController = TextEditingController();
   final _listController = StreamController<List<Note>>(sync: true);
 
+  //remember must have keyword late initialization
   final ObjectBoxService _objectBoxService = locator<ObjectBoxService>();
 
   @override
   void initState() {
     super.initState();
 
-    defaultStoreDirectory().then((dir) {
-      _objectBoxService.initStore(dir: dir);
+    final _t =
+        _objectBoxService.noteRepo.queryStream().map((event) => event.find());
 
-      final _t =
-          _objectBoxService.noteRepo.queryStream().map((event) => event.find());
-
-      _t.listen((onData) {
-        _listController.add(onData);
-      });
+    _t.listen((onData) {
+      _listController.add(onData);
     });
   }
 
@@ -51,7 +47,6 @@ class _DisplayViewState extends State<DisplayView> {
   void dispose() {
     _noteInputController.dispose();
     _listController.close();
-    _objectBoxService.dispose();
     super.dispose();
   }
 

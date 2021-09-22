@@ -1,7 +1,8 @@
 import 'package:objectbox/objectbox.dart';
+import 'package:objectbox_stream_issue/locator.dart';
 import 'package:objectbox_stream_issue/model/note.dart';
 import 'package:objectbox_stream_issue/objectbox.g.dart';
-
+import 'package:objectbox_stream_issue/service/objectbox_service.dart';
 //########################################################################
 //      Created By Jacob Handaya
 //      jacobhandaya@gmail.com
@@ -10,10 +11,14 @@ import 'package:objectbox_stream_issue/objectbox.g.dart';
 //########################################################################
 
 class NoteRepo {
+  //remember must have keyword late initialization
   late Box<Note> _box;
 
-  void initBox({required Store store}) {
-    _box = Box<Note>(store);
+  //remember must have keyword late initialization
+  late ObjectBoxService _objectBoxService = locator<ObjectBoxService>();
+
+  NoteRepo() {
+    _box = Box<Note>(_objectBoxService.store);
   }
 
   Stream<Query<Note>> queryStream() {
